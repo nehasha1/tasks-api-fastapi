@@ -12,9 +12,13 @@ def create_app():
 
 app = create_app()
 
+from app.database import Base, engine
+
 @app.on_event("startup")
 def on_startup():
-    init_db()
+    # Automatically create all tables in the database
+    Base.metadata.create_all(bind=engine)
+
 # --- auto-added health endpoint for Render ---
 from fastapi import FastAPI
 try:
