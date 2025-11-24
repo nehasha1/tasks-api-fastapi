@@ -4,6 +4,13 @@ from app.database import init_db
 from app.routes_auth import router as auth_router
 from app.routes_tasks import router as tasks_router
 
+
+app = FastAPI()
+
+@app.get("/")
+def root():
+    return {"message": "Welcome to Tasks API. Use /auth/register or /auth/login to test."}
+
 def create_app():
     app = FastAPI(title="Tasks API (JWT Auth)")
     app.include_router(auth_router, prefix="/auth", tags=["auth"])

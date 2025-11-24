@@ -31,8 +31,9 @@ def verify_password(plain_password, hashed_password):
     # Truncate password to 72 bytes to avoid bcrypt error
     return pwd_context.verify(plain_password[:72], hashed_password)
 
-def get_password_hash(password):
-    # Truncate password to 72 bytes before hashing
+
+def get_password_hash(password: str):
+    # Truncate manually to 72 characters
     return pwd_context.hash(password[:72])
 
 
