@@ -15,3 +15,13 @@ app = create_app()
 @app.on_event("startup")
 def on_startup():
     init_db()
+# --- auto-added health endpoint for Render ---
+from fastapi import FastAPI
+try:
+    # append health route if not present
+    @app.get("/health")
+    def health():
+        return {"status":"ok"}
+except Exception:
+    pass
+# --- end ---
